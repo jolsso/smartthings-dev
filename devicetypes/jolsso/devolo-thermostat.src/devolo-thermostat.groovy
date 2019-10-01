@@ -20,7 +20,6 @@ metadata {
 		capability "Sensor"
 		capability "Health Check"
 		
-		
 		attribute "thermostatFanState", "string"
 		
 		command "switchMode"
@@ -78,7 +77,7 @@ metadata {
 			state "emergency heat", action:"switchMode", nextState:"...", icon: "st.thermostat.emergency-heat"
 			state "...", label: "Updating...",nextState:"...", backgroundColor:"#ffffff"
 		}
-		*/
+		
 		// Ventilatortilstand
 		standardTile("fanMode", "device.thermostatFanMode", width:2, height:2, inactiveLabel: false, decoration: "flat") {
 			state "auto", action:"switchFanMode", nextState:"...", icon: "st.thermostat.fan-auto"
@@ -86,7 +85,7 @@ metadata {
 			state "circulate", action:"switchFanMode", nextState:"...", icon: "st.thermostat.fan-circulate"
 			state "...", label: "Updating...", nextState:"...", backgroundColor:"#ffffff"
 		}
-		*/
+		
 		standardTile("lowerHeatingSetpoint", "device.heatingSetpoint", width:2, height:1, inactiveLabel: false, decoration: "flat") {
 			state "heatingSetpoint", action:"lowerHeatingSetpoint", icon:"st.thermostat.thermostat-left"
 		}
