@@ -71,6 +71,7 @@ metadata {
 			state "heatingSetpoint", label:'${currentValue}° heat', backgroundColor:"#ffffff"
 		}
 		// Tilstand
+		/*
 		standardTile("mode", "device.thermostatMode", width:2, height:2, inactiveLabel: false, decoration: "flat") {
 			state "off", action:"switchMode", nextState:"...", icon: "st.thermostat.heating-cooling-off"
 			state "heat", action:"switchMode", nextState:"...", icon: "st.thermostat.heat"
@@ -78,15 +79,16 @@ metadata {
 			state "auto", action:"switchMode", nextState:"...", icon: "st.thermostat.auto"
 			state "emergency heat", action:"switchMode", nextState:"...", icon: "st.thermostat.emergency-heat"
 			state "...", label: "Updating...",nextState:"...", backgroundColor:"#ffffff"
-		}
+		}*/
 		
 		// Ventilatortilstand
+		/*
 		standardTile("fanMode", "device.thermostatFanMode", width:2, height:2, inactiveLabel: false, decoration: "flat") {
 			state "auto", action:"switchFanMode", nextState:"...", icon: "st.thermostat.fan-auto"
 			state "on", action:"switchFanMode", nextState:"...", icon: "st.thermostat.fan-on"
 			state "circulate", action:"switchFanMode", nextState:"...", icon: "st.thermostat.fan-circulate"
 			state "...", label: "Updating...", nextState:"...", backgroundColor:"#ffffff"
-		}
+		}*/
 		
 		standardTile("lowerHeatingSetpoint", "device.heatingSetpoint", width:2, height:1, inactiveLabel: false, decoration: "flat") {
 			state "heatingSetpoint", action:"lowerHeatingSetpoint", icon:"st.thermostat.thermostat-left"
