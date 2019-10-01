@@ -20,14 +20,14 @@ metadata {
 		capability "Sensor"
 		capability "Health Check"
 		
-		attribute "thermostatFanState", "string"
+		//attribute "thermostatFanState", "string"
 		
-		command "switchMode"
-		command "switchFanMode"
+		//command "switchMode"
+		//command "switchFanMode"
 		command "lowerHeatingSetpoint"
 		command "raiseHeatingSetpoint"
-		command "lowerCoolSetpoint"
-		command "raiseCoolSetpoint"
+		//command "lowerCoolSetpoint"
+		//command "raiseCoolSetpoint"
 		
 		command "thermostatSetpoint"
 		command "poll"
@@ -99,7 +99,7 @@ metadata {
 		standardTile("raiseHeatingSetpoint", "device.heatingSetpoint", width:2, height:1, inactiveLabel: false, decoration: "flat") {
 			state "heatingSetpoint", action:"raiseHeatingSetpoint", icon:"st.thermostat.thermostat-right"
 		}
-		
+
 		// Cooling
 		/*
 		standardTile("lowerCoolSetpoint", "device.coolingSetpoint", width:2, height:1, inactiveLabel: false, decoration: "flat") {
@@ -124,8 +124,9 @@ metadata {
 		}
 		
 		main "temperature"
-		details(["temperature", "lowerHeatingSetpoint", "heatingSetpoint", "raiseHeatingSetpoint", "lowerCoolSetpoint",
-				"coolingSetpoint", "raiseCoolSetpoint", "mode", "fanMode", "thermostatOperatingState", "refresh"])
+		/*details(["temperature", "lowerHeatingSetpoint", "heatingSetpoint", "raiseHeatingSetpoint", "lowerCoolSetpoint",
+				"coolingSetpoint", "raiseCoolSetpoint", "mode", "fanMode", "thermostatOperatingState", "refresh"])*/
+		details(["temperature", "lowerHeatingSetpoint", "heatingSetpoint", "raiseHeatingSetpoint", "mode", "thermostatOperatingState", "refresh"])
 	}
 }
 
@@ -246,6 +247,7 @@ def zwaveEvent(physicalgraph.zwave.commands.thermostatoperatingstatev1.Thermosta
 	sendEvent(map)
 }
 
+/*
 def zwaveEvent(physicalgraph.zwave.commands.thermostatfanstatev1.ThermostatFanStateReport cmd) {
 	def map = [name: "thermostatFanState", unit: ""]
 	switch (cmd.fanOperatingState) {
@@ -260,7 +262,7 @@ def zwaveEvent(physicalgraph.zwave.commands.thermostatfanstatev1.ThermostatFanSt
 			break
 	}
 	sendEvent(map)
-}
+}*/
 
 def zwaveEvent(physicalgraph.zwave.commands.thermostatmodev2.ThermostatModeReport cmd) {
 	def map = [name: "thermostatMode", data:[supportedThermostatModes: state.supportedModes]]
@@ -391,13 +393,15 @@ def lowerHeatingSetpoint() {
 	alterSetpoint(false, "heatingSetpoint")
 }
 
+/*
 def raiseCoolSetpoint() {
 	alterSetpoint(true, "coolingSetpoint")
-}
+}*/
 
+/*
 def lowerCoolSetpoint() {
 	alterSetpoint(false, "coolingSetpoint")
-}
+}*/
 
 // Adjusts nextHeatingSetpoint either .5° C/1° F) if raise true/false
 def alterSetpoint(raise, setpoint) {
@@ -542,6 +546,7 @@ def ping() {
 	sendHubCommand(new physicalgraph.device.HubAction(zwave.thermostatOperatingStateV1.thermostatOperatingStateGet().format()))
 }
 
+/*
 def switchMode() {
 	def currentMode = device.currentValue("thermostatMode")
 	def supportedModes = state.supportedModes
@@ -554,7 +559,7 @@ def switchMode() {
 		log.warn "supportedModes not defined"
 		getSupportedModes()
 	}
-}
+}*/
 
 def switchToMode(nextMode) {
 	def supportedModes = state.supportedModes
@@ -577,6 +582,7 @@ def getSupportedModes() {
 	sendHubCommand(cmds)
 }
 
+/*
 def switchFanMode() {
 	def currentMode = device.currentValue("thermostatFanMode")
 	def supportedFanModes = state.supportedFanModes
@@ -589,7 +595,7 @@ def switchFanMode() {
 		log.warn "supportedFanModes not defined"
 		getSupportedFanModes()
 	}
-}
+}*/
 
 def switchToFanMode(nextMode) {
 	def supportedFanModes = state.supportedFanModes
