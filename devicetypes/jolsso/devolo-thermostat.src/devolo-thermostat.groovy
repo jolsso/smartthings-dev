@@ -12,7 +12,7 @@
  *
  */
 metadata {
-	definition (name: "Devolo Thermostat", namespace: "baconvampire", author: "baconvampire") {
+	definition (name: "Devolo Thermostat", namespace: "jolsso", author: "jolsso") {
 		capability "Actuator"
 		capability "Temperature Measurement"
 		capability "Thermostat"
